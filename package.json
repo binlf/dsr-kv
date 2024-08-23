@@ -1,0 +1,28 @@
+{
+  "name": "dsr-kv",
+  "version": "0.0.1",
+  "description": "De-Serialize keys or values in a stringified JSON object.",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^22.5.0",
+    "tsup": "^8.2.4",
+    "typescript": "^5.5.4"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "lint": "tsc",
+    "dev": "bun dist/index.js"
+  },
+  "keywords": [
+    "keyval",
+    "object",
+    "deserializer",
+    "serializer",
+    "json"
+  ],
+  "author": "binlf",
+  "license": "MIT"
+}
