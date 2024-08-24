@@ -1,6 +1,6 @@
 # dsr-kv
 
-De-Serialize object keys or values in a stringified JSON data structure.
+De-Serialize object `keys` or `values` in a stringified JSON data structure.
 
 ## Installation
 
@@ -11,7 +11,7 @@ npm install dsr-kv
 ```
 
 > [!NOTE]
-> _It doesn't deserialize the whole JSON string(as JSON.parse() would), instead just the `keys` or `values`(or both) of objects found in the JSON string;_
+> _It doesn't deserialize the whole JSON string(as `JSON.parse()` would), instead just the `keys` or `values`(or both) of objects found in the JSON string;_
 
 ## Why?
 
