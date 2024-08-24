@@ -14,7 +14,8 @@
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",
     "lint": "tsc",
-    "dev": "bun dist/index.js"
+    "dev": "tsup src/index.ts --watch",
+    "exec": "bun dist/index.js"
   },
   "keywords": [
     "keyval",
