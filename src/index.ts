@@ -1,7 +1,7 @@
 /**
  * De-Serialize object keys or values in a JSON string.
  * @param {string} jsonString - The JSON string to be parsed.
- * @example deserializeKv('{"hello":"world"}') // Output: '{hello:"world"}'
+ * @example deserializeKv('{"hello":"world"}') // Output: '{hello:"world"}'.
  */
 const deSerializeKv = (jsonString: string) => {
   if (typeof jsonString !== "string") return jsonString;
