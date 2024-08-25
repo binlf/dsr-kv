@@ -13,71 +13,44 @@ const deSerializeKv = (jsonString: string) => {
   if (typeof jsonObj !== "object" || jsonObj === null) return jsonString;
 
   // extract keys from data structure
-  const deserializedKeys: string[] = [];
-  const getKeys = <T>(obj: T) => {
-    // parse array literal
-    if (Array.isArray(obj)) {
-      for (const element of obj) {
-        if (element.length && Array.isArray(element)) getKeys(element);
+  const getKeys = <T>(jsonObj: T) => {
+    const deserializedKeys: string[] = [];
+
+    const parseArrLiteral = (arr: any) => {
+      for (const element of arr) {
+        if (Array.isArray(element)) parseArrLiteral(element);
         if (typeof element === "object" && element !== null)
           parseObjLiteral(element);
       }
-    } else parseObjLiteral(obj);
-  };
+    };
 
-  // parse object literal
-  const parseObjLiteral = (obj: any) => {
-    for (const [key, value] of Object.entries(obj)) {
-      deserializedKeys.push(key);
-      if (Array.isArray(value)) {
-        getKeys(value);
+    // parse object literal
+    const parseObjLiteral = (obj: any) => {
+      for (const [key, value] of Object.entries(obj)) {
+        deserializedKeys.push(key);
+        if (Array.isArray(value)) parseArrLiteral(value);
+        if (
+          typeof value === "object" &&
+          !Array.isArray(value) &&
+          value !== null
+        )
+          parseObjLiteral(value);
       }
-      // else if (typeof (value === "object") && !Array.isArray(obj))
-      //   parseObjLiteral(value);
-    }
-  };
-  getKeys(jsonObj);
-  return deserializedKeys;
-};
+    };
 
-// for (const [key, value] of Object.entries(obj as any)) {
-//   if (Array.isArray(value)) getKeys(value);
-//   deserializedKeys.push(key);
-// }
+    if (Array.isArray(jsonObj)) {
+      parseArrLiteral(jsonObj);
+    } else parseObjLiteral(jsonObj);
+
+    return deserializedKeys;
+  };
+
+  return getKeys(jsonObj);
+};
 
 export { deSerializeKv, deSerializeKv as dsr };
 
-const arrObj = {
-  person: {
-    name: "Bob",
-    age: 25,
-    address: {
-      street: "123 Main St",
-      city: "Los Angeles",
-      state: "CA",
-      zip: "90001",
-    },
-    interests: ["coding", "gaming", "music"],
-  },
-  vehicle: {
-    make: "Toyota",
-    model: "Camry",
-    year: 2023,
-    color: "Blue",
-  },
-  pets: [
-    {
-      name: "Max",
-      species: "Dog",
-      breed: "Golden Retriever",
-    },
-    {
-      name: "Luna",
-      species: "Cat",
-      breed: "Siamese",
-    },
-  ],
-};
+const arrObj = ["hello", "world", { null: "hello" }];
 const stringifiedJsonObject = JSON.stringify(arrObj);
 console.log("Input: ", stringifiedJsonObject);
 console.log("Output: ", deSerializeKv(stringifiedJsonObject));
