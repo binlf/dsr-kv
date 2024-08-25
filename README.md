@@ -15,5 +15,6 @@ npm install dsr-kv
 
 ## Why?
 
-While building [lofo](https://github.com/binlf/lofo), as a step during the program's execution, I wanted to write an `object` literal to a file. The obvious solution was to `JSON.stringify()` the object first, then write it to the file, but after doing that I ran into this [issue](https://github.com/binlf/lofo/issues/2), where **Next.js** would fail with an error: _`Unexpected object key type`_, when trying to read the "stringified" object.
-This function was written just to ignore/get over that limitation.
+While building [lofo](https://github.com/binlf/lofo), as a step during the program's execution, I wanted to write an `object` literal to a file. The obvious solution was to `JSON.stringify()` the object first, then write it to the file but, the result of that approach was this [issue](https://github.com/binlf/lofo/issues/2), where **Next.js** would fail with an error: _`Unexpected object key type`_, when trying to read the "stringified" object. I concluded that the solution was to "deserialize" the object key first, then write to the file. It worked!
+
+At the time, I had a minimal implementation of the idea(that worked), this package is just a "finished" version of that implementation.
