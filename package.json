@@ -1,6 +1,6 @@
 {
   "name": "dsr-kv",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "De-Serialize keys or values in a stringified JSON object.",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -23,6 +23,9 @@
     "deserializer",
     "serializer",
     "json"
+  ],
+  "files": [
+    "dist"
   ],
   "author": "binlf",
   "license": "MIT"
