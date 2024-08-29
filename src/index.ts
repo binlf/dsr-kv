@@ -26,7 +26,6 @@ const deSerializeKv = (jsonString: string) => {
     // parse object literal
     const parseObjLiteral = (obj: any) => {
       for (const [key, value] of Object.entries(obj)) {
-        // deserializedKeys.push(key);
         keys.add(key);
         if (Array.isArray(value)) parseArrLiteral(value);
         if (
@@ -41,8 +40,6 @@ const deSerializeKv = (jsonString: string) => {
     if (Array.isArray(jsonObj)) {
       parseArrLiteral(jsonObj);
     } else parseObjLiteral(jsonObj);
-
-    return Array.from(keys);
   };
   getKeys(jsonObj);
 

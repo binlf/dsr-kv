@@ -15,18 +15,22 @@
     "build": "tsup src/index.ts --format cjs,esm --dts",
     "lint": "tsc",
     "dev": "tsup src/index.ts --watch",
-    "exec": "bun dist/index.js"
+    "exec": "bun src/tests.ts"
   },
   "keywords": [
     "keyval",
     "object",
     "deserializer",
     "serializer",
-    "json"
+    "json",
+    "key",
+    "value",
+    "key-value"
   ],
   "files": [
     "dist"
   ],
   "author": "binlf",
-  "license": "MIT"
+  "license": "MIT",
+  "sideEffects": false
 }
