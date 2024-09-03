@@ -1,6 +1,6 @@
 # dsr-kv
 
-De-Serialize object `keys` or `values` in a stringified JSON data structure.
+De-Serialize object `keys` or `values` in a stringified JSON object/data structure.
 
 ## Installation
 
