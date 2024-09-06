@@ -1,5 +1,5 @@
-// todo: write tests
-import { dsr } from ".";
+import { dsr, getKeys } from "../dist/index";
+import { test, expect } from "bun:test";
 
 const data = {
   company: {
@@ -114,4 +114,101 @@ const data = {
   },
 };
 
-console.log("Output: \n", dsr(JSON.stringify(data)));
+test("Check if object keys are deserialzed in JSON Object", () => {
+  const keys = getKeys(data);
+  const dsrString = dsr(JSON.stringify(data));
+  console.log("String: ", dsrString);
+  keys.forEach((key) => {
+    console.log(key);
+    expect(dsrString).toContain(`${key}`);
+  });
+});
+
+const data2 = [
+  {
+    id: 1,
+    type: "user",
+    attributes: {
+      name: "Alice",
+      email: "alice@example.com",
+      preferences: {
+        notifications: true,
+        theme: "dark",
+      },
+    },
+    posts: [
+      {
+        postId: 101,
+        title: "First Post",
+        content: "This is Alice's first post",
+        comments: [
+          {
+            commentId: 1001,
+            author: "Bob",
+            text: "Great post!",
+          },
+          {
+            commentId: 1002,
+            author: "Charlie",
+            text: "Thanks for sharing.",
+          },
+        ],
+      },
+      {
+        postId: 102,
+        title: "Second Post",
+        content: "Another post by Alice",
+        comments: [],
+      },
+    ],
+  },
+  {
+    id: 2,
+    type: "user",
+    attributes: {
+      name: "Bob",
+      email: "bob@example.com",
+      preferences: {
+        notifications: false,
+        theme: "light",
+      },
+    },
+    posts: [
+      {
+        postId: 201,
+        title: "Hello World",
+        content: "Bob's first post",
+        comments: [
+          {
+            commentId: 2001,
+            author: "Alice",
+            text: "Welcome, Bob!",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 3,
+    type: "user",
+    attributes: {
+      name: "Charlie",
+      email: "charlie@example.com",
+      preferences: {
+        notifications: true,
+        theme: "light",
+      },
+    },
+    posts: [],
+  },
+];
+
+test("Check if object keys are deserialzed in JSON Array", () => {
+  const keys = getKeys(data2);
+  const dsrString = dsr(JSON.stringify(data2));
+  console.log("String: ", dsrString);
+  keys.forEach((key) => {
+    console.log(key);
+    expect(dsrString).toContain(`${key}`);
+  });
+});
