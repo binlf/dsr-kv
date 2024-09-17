@@ -1,4 +1,4 @@
-import { dsr, getKeys } from "../dist/index";
+import { dsr, getKeys } from ".";
 // @ts-expect-error
 import { test, expect } from "bun:test";
 
@@ -119,7 +119,7 @@ test("Check if object keys are deserialzed in JSON Object", () => {
   const keys = getKeys(data);
   const dsrString = dsr(JSON.stringify(data));
   console.log("String: ", dsrString);
-  keys.forEach((key) => {
+  keys.forEach((key: string) => {
     console.log(key);
     expect(dsrString).toContain(`${key}`);
   });
@@ -208,7 +208,7 @@ test("Check if object keys are deserialzed in JSON Array", () => {
   const keys = getKeys(data2);
   const dsrString = dsr(JSON.stringify(data2));
   console.log("String: ", dsrString);
-  keys.forEach((key) => {
+  keys.forEach((key: string) => {
     console.log(key);
     expect(dsrString).toContain(`${key}`);
   });
