@@ -1,6 +1,6 @@
 {
   "name": "dsr-kv",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "De-Serialize keys or values in a stringified JSON object.",
   "type": "module",
   "main": "dist/index.js",
