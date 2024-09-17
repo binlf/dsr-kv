@@ -4,14 +4,7 @@
   "description": "De-Serialize keys or values in a stringified JSON object.",
   "type": "module",
   "main": "dist/index.js",
-  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
-  "dependencies": {},
-  "devDependencies": {
-    "@types/node": "^22.5.0",
-    "tsup": "^8.2.4",
-    "typescript": "^5.5.4"
-  },
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",
     "lint": "tsc",
@@ -37,5 +30,10 @@
   },
   "author": "binlf",
   "license": "MIT",
-  "sideEffects": false
+  "sideEffects": false,
+  "devDependencies": {
+    "@types/node": "^22.5.0",
+    "tsup": "^8.2.4",
+    "typescript": "^5.5.4"
+  }
 }
