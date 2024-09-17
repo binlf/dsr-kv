@@ -1,0 +1,28 @@
+name: Publish
+on:
+    push:
+        branches:
+            - "main"
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+
+            # Setup Bun
+            - name: Setup Bun
+              uses: oven-sh/setup-bun@v1
+              with:
+                bun-version: 'latest'
+
+            # Install dependencies using Bun
+            - run: bun install
+
+            - name: Create Release Pull Request or Publish
+              id: changesets
+              uses: changesets/action@v1
+              with:
+                publish: bun run build

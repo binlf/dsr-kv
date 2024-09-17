@@ -1,4 +1,5 @@
 import { dsr, getKeys } from "../dist/index";
+// @ts-expect-error
 import { test, expect } from "bun:test";
 
 const data = {
